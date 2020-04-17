@@ -23,5 +23,5 @@ jobs:
           mysql:5.7.17
         sleep 10
         docker ps
-        docker logs mysql-test
         docker exec mysql-test mysql -u root -e 'use foo-test'
+        #docker logs mysql-test
