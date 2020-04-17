@@ -17,7 +17,6 @@ jobs:
         docker run \
           -d \
           --name=mysql-test \
-          --privileged \
           --tmpfs=/var/lib/mysql:rw,size=256m,mode=1777 \
           mysql:5.7.17
         sleep 10
