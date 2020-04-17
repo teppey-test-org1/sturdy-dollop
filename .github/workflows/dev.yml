@@ -28,7 +28,7 @@ jobs:
         docker ps
         docker exec mysql-test mysql -u root -e 'show databases'
 
-        docker run 
+        docker run \
           --net=testnet \
           --net-alias=mysql-client \
           --name=mysql-client \
