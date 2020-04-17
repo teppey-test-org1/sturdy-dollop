@@ -1,0 +1,24 @@
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    timeout-minutes: 10
+    runs-on: ubuntu-latest
+    name: Build container
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v1
+    - name: Build container
+      run: |
+        docker pull mysql:5.7.17
+        docker run \
+          -d \
+          --name=mysql-test \
+          --privileged \
+          --tmpfs=/var/lib/mysql:rw,size=256m,mode=1777
+        sleep 10
+        docker ps
+        docker logs mysql-test
