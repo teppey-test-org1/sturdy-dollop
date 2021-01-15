@@ -1,0 +1,34 @@
+on:
+  push:
+    branches:
+      - master
+
+env:
+  IS_C: ${{ endsWith('abc', 'c') }}
+  IS_D: ${{ endsWith('xyz', 'd') }}
+
+jobs:
+  build:
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
+    name: boolean test
+    steps:
+      - name: Check IS_C
+        if: ${{ env.IS_C }}
+        run: |
+          echo "is c: $IS_C"
+
+      - name: Check IS_D
+        if: ${{ env.IS_D }}
+        run: |
+          echo "is d: $IS_D"
+
+      - name: Check IS_C and IS_D
+        if: ${{ env.IS_C && env.IS_D }}
+        run: |
+          echo "(is c: $IS_C) and (is d: $IS_D)"
+
+      - name: Check IS_C or IS_D
+        if: ${{ env.IS_C || env.IS_D }}
+        run: |
+          echo "(is c: $IS_C) or (is d: $IS_D)"
